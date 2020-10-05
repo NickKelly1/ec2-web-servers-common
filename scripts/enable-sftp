@@ -1,0 +1,61 @@
+#!/usr/local/bin/node
+// this script must be run as root...
+// requires root having access to node binary
+
+const fs = require('fs');
+const path = require('path');
+
+const replace_from_reg = new RegExp(/^Subsystem\s+sftp\s+\/usr\/libexec\/openssh\/sftp-server.*$/m);
+const replace_to_str = `# Patch to allow sFTP on Amazon Linux 2...
+# From [guide](https://superuser.com/questions/531589/cannot-scp-file-to-an-ec2-instance-that-i-can-ssh-to)
+# old: Subsystem sftp  /usr/libexec/openssh/sftp-server
+# new:
+Subsystem sftp  internal-sftp`
+
+console.log('Enabling sFTP...');
+console.log('TODO: figure out why this work-around is required and fix it...');
+
+const file_original = '/etc/ssh/sshd_config';
+const file_bak = '/etc/ssh/sshd_config.bak';
+const file_bak_original = '/etc/ssh/sshd_config.bak.original';
+
+// read file
+if (!fs.existsSync(file_original)) {
+  throw new ReferenceError('Original file does not exist');
+}
+const prev_body = fs.readFileSync(file_original, { encoding: 'utf-8' });
+const match = prev_body.match(replace_from_reg);
+if (!match) {
+  console.log('prev_body:');
+  console.log(prev_body);
+  console.log('match:');
+  console.log(match);
+  throw new ReferenceError(`Original file does not include ${String(replace_from_reg)}... May have already been patched`);
+}
+
+// backup original
+if (!fs.existsSync(file_bak_original)) {
+  console.log(`backing up ${file_original} => ${file_bak_original}`);
+  fs.writeFileSync(file_bak_original, prev_body);
+} else {
+  console.log(`original backup already exists...`);
+}
+
+// backup current
+console.log(`backing up ${file_original} => ${file_bak}`);
+fs.writeFileSync(file_bak, prev_body);
+
+
+// overwrite
+const next_body = prev_body.replace(replace_from_reg, replace_to_str);
+
+console.log('******* removed *******');
+console.log(String(replace_from_reg));
+console.log('******** added ********');
+console.log(String(replace_to_str));
+console.log('********* end *********');
+console.log('writing...');
+fs.writeFileSync(file_original, next_body);
+console.log('success');
+
+
