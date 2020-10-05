@@ -1,22 +1,20 @@
-# My-Servers V 3
-
 ## Installing / removing amazon-linux-extras packages
 
 [Usage](https://docs.amazonaws.cn/en_us/AWSEC2/latest/UserGuide/amazon-linux-ami-basics.html)
 
-### Listing
+Listing:
 
 ```bash
 amazon-linux-extras list
 ```
 
-### Installing
+Installing:
 
 ```bash
 sudo amazon-linux-extras install <topic>
 ```
 
-### Removing
+Removing:
 
 ```bash
 sudo yum remove $(yum list installed | grep amzn2extra-<topic> | awk '{ print $q }')
@@ -26,7 +24,7 @@ sudo yum remove $(yum list installed | grep amzn2extra-<topic> | awk '{ print $q
 
 ## [Attaching & mounting ebs to ec2](https://devopscube.com/mount-ebs-volume-ec2-instance/)
 
-### Manual mounting
+Manual mounting:
 
 ```bash
 # check devices
@@ -52,7 +50,7 @@ umount /dev/xvdf
 ```
 
 
-### Auto mounting
+Auto mounting:
 
 ```bash
 # back up fstab
@@ -71,7 +69,7 @@ sudo mount -a
 ```
 
 
-### Changing ownership of mounted drive
+Changing ownership of mounted drive:
 
 ```sh
 # https://superuser.com/questions/320415/mount-device-with-specific-user-rights
