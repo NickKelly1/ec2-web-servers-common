@@ -1,24 +1,4 @@
-## Installing / removing amazon-linux-extras packages
-
-[Usage](https://docs.amazonaws.cn/en_us/AWSEC2/latest/UserGuide/amazon-linux-ami-basics.html)
-
-Listing:
-
-```bash
-amazon-linux-extras list
-```
-
-Installing:
-
-```bash
-sudo amazon-linux-extras install <topic>
-```
-
-Removing:
-
-```bash
-sudo yum remove $(yum list installed | grep amzn2extra-<topic> | awk '{ print $q }')
-```
+# Devices
 
 ## Mounting a drive
 
@@ -77,20 +57,4 @@ Changing ownership of mounted drive:
 # (username:group) => (ec2-user:ec2-user)
 chown -R username:group /mountpoint
 find /mountpoint -type d -exec chmod g+ws {} \;
-```
-
-
-### Finding yur own ip adress
-
-```bash
-# https://www.cyberciti.biz/faq/how-to-find-public-ip-address-aws-ec2-or-lightsail-vm/
-
-dig +short myip.opendns.com @resolver1.opendns.com
-#  3.25.174.224
-
-dig TXT +short o-o.myaddr.l.google.com @ns1.google.com                                                                                     <<<
-# "3.25.174.224"
-
-curl http://checkip.amazonaws.com
-# 3.25.174.224
 ```
