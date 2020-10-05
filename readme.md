@@ -24,7 +24,7 @@ sudo yum remove $(yum list installed | grep amzn2extra-<topic> | awk '{ print $q
 
 ## Mounting a drive
 
-## (Attaching & mounting ebs to ec2)[https://devopscube.com/mount-ebs-volume-ec2-instance/]
+## [Attaching & mounting ebs to ec2](https://devopscube.com/mount-ebs-volume-ec2-instance/)
 
 ### Manual mounting
 
