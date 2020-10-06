@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+echo "Starting nginx..."
+sudo systemctl start nginx

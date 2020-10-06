@@ -8,21 +8,17 @@ TODO: the below guide doesn't work...
 
 [Guide](https://levelup.gitconnected.com/how-to-install-ssl-certificate-for-nginx-server-in-amazon-linux-2986f51371fb)
 
+note: this guide is written partly from memory... may not fully work as written
+
 ```bash
 cd /home/ec2-user
 
-# get certbot auto
-wget https://dl.eff.org/certbot-auto
-
-# change perms of certbot
-# a (all users)
-# +x (executable)
-chmod a+x ./certbot-auto
+# get certbot
+sudo yum install certbot
 
 # generate certificate
-./certbot-auto certonly --standalone --debug -d stateofjavascript.com -d www.stateofjavascript.com
-# fill in...
-
+sudo certbot certonly --standalone --debug -d stateofjavascript.com -d www.stateofjavascript.com
+# fills in...
 # Certificate:
 # /etc/letsencrypt/live/stateofjavascript.com/cert.pem
 # Full Chain:
@@ -49,12 +45,12 @@ Modify config at /etc/nginx/nginx.conf
   }
 }
 server {
-  listen 4433 ssl;
+  listen 443 ssl;
   server_name stateofjavascript.com;
   ssl_certificate "/etc/letsencrypt/live/stateofjavascript.com/fullchain.pem";
   ssl_certificate_key "/etc/letsencrypt/live/stateofjavascript.com/privkey.pem";
 
-  add_header Strict_Transport-Security "max-age=315360000";
+  add_header Strict-Transport-Security "max-age=315360000";
   # other headers
 
   location / {

@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+echo "Restart nginx..."
+sudo systemctl restart nginx

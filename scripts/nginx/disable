@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+echo "Disabling nginx..."
+sudo systemctl disable nginx

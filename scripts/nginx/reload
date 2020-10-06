@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+echo "Reloading nginx..."
+sudo systemctl reload nginx
