@@ -17,7 +17,7 @@ cd /home/ec2-user
 sudo yum install certbot
 
 # generate certificate
-sudo certbot certonly --standalone --debug -d stateofjavascript.com -d www.stateofjavascript.com
+sudo certbot certonly --standalone --debug -d stateofjavascript.com -d www.stateofjavascript.com -d api.stateofjavascript.com
 # fills in...
 # Certificate:
 # /etc/letsencrypt/live/stateofjavascript.com/cert.pem
