@@ -1,0 +1,21 @@
+version: "3.8"
+
+# https://docs.docker.com/registry/deploying/#native-basic-auth
+# https://docs.docker.com/registry/deploying/#copy-an-image-from-docker-hub-to-your-registry
+
+# TLS handled by Nginx
+services:
+  registry:
+    container_name: nk_docker_registry
+    restart: always
+    image: registry:2
+    ports:
+      - 5000:5000
+    environment:
+      REGISTRY_AUTH: htpasswd
+      REGISTRY_AUTH_HTPASSWD_REALM: Registry Realm
+      REGISTRY_AUTH_HTPASSWD_PATH: /auth/htpasswd
+      REGISTRY_STORAGE_DELETE_ENABLED: "true"
+    volumes:
+      - ./registry:/var/lib/registry
+      - ./auth:/auth
