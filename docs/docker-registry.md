@@ -42,7 +42,7 @@ docker login docker.nickkelly.dev
 
 If deleting stuff, docker requires a lot of maintenance
 
-After an image is deleted using a http request
+After an image/tag is deleted using a http request
 ```bash
 # list catalogue (images)
 curl \
@@ -78,10 +78,11 @@ curl \
    https://docker.nickkelly.dev:443/v2/my-ubuntu/manifests/sha256:096efd74bb89d5ec92cb3a61c79cf8ceab00c135b7d3e
 ```
 
+Afer deleting images / tags, you must perform garbage collection to prune orphaned resources
 
-Afer deleting images / tags, you may still have to perform garbage collection
+If removing an image completely, after removing all its tags you must go into the fs and delete the repository directory
 
-If removing an image completely, after removing all its tags you may have to remove the images directory
+Warning: this may mess everything up, don't know...
 
 From within container:
 ```sh
@@ -89,11 +90,15 @@ docker exec -it /bin/sh
 cd /bin
 # registry garbage-collect /etc/docker/registry/config.yml --dry-run /etc/docker/registry/config.yml
 registry garbage-collect /etc/docker/registry/config.yml /etc/docker/registry/config.yml
+# then cd into directory and sudo rm -rf
+# warning: this may mess everything up...
 ```
 
 From outside container:
 ```sh
 # docker -exec -it /bin/registry garbage-collect --dry-run /etc/docker/registry/config.yml
 docker -exec -it /bin/registry garbage-collect /etc/docker/registry/config.yml # --dry-run
+# then cd into directory and sudo rm -rf
+# warning: this may mess everything up...
 ```
 
