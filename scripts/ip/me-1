@@ -1,4 +1,6 @@
 #! /usr/bin/env sh
 
+set -euo pipefail
+
 # https://www.cyberciti.biz/faq/how-to-find-public-ip-address-aws-ec2-or-lightsail-vm/
 dig +short myip.opendns.com @resolver1.opendns.com
