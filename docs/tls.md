@@ -30,6 +30,7 @@ sudo certbot \
 	--standalone\
 	--debug \
 	-d nickkelly.dev \
+	-d bookmarks.nickkelly.dev \
   -d docker.nickkelly.dev \
 	-d stateofjavascript.com \
 	-d api.stateofjavascript.com \
