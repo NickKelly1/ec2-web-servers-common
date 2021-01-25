@@ -30,20 +30,21 @@ sudo certbot \
 	--standalone\
 	--debug \
 	-d nickkelly.dev \
-	-d bookmarks.nickkelly.dev \
-  -d docker.nickkelly.dev \
-	-d stateofjavascript.com \
-	-d api.stateofjavascript.com \
+	-d planka.nickkelly.dev \
+	-d linkace.nickkelly.dev \
+	-d firefly.nickkelly.dev \
 	-d cms.nickkelly.dev \
 	-d api.nickkelly.dev \
 	-d health.nickkelly.dev \
 	-d examples-accounts.nickkelly.dev \
-	-d www.stateofjavascript.com \
+	-d www.planka.nickkelly.dev \
 	-d www.nickkelly.dev \
 	-d www.cms.nickkelly.dev \
 	-d www.api.nickkelly.dev \
 	-d www.health.nickkelly.dev \
-	-d www.examples-accounts.nickkelly.dev
+	-d www.examples-accounts.nickkelly.dev \
+	-d www.firefly.nickkelly.dev \
+  -d docker.nickkelly.dev
 
 # Remove the downloaded files & folders
 cd ..
