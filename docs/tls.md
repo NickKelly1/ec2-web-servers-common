@@ -35,14 +35,14 @@ sudo certbot \
 	-d firefly.nickkelly.dev \
 	-d cms.nickkelly.dev \
 	-d api.nickkelly.dev \
-	-d health.nickkelly.dev \
-	-d examples-accounts.nickkelly.dev \
+	-d http-icons.nickkelly.dev \
+	-d gql-ts.nickkelly.dev \
 	-d www.planka.nickkelly.dev \
 	-d www.nickkelly.dev \
 	-d www.cms.nickkelly.dev \
 	-d www.api.nickkelly.dev \
-	-d www.health.nickkelly.dev \
-	-d www.examples-accounts.nickkelly.dev \
+	-d www.http-icons.nickkelly.dev \
+	-d www.gql-ts.nickkelly.dev \
 	-d www.firefly.nickkelly.dev \
   -d docker.nickkelly.dev
 
